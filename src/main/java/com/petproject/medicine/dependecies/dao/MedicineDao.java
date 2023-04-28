@@ -1,6 +1,6 @@
-package com.petproject.medicine.dao;
+package com.petproject.medicine.dependecies.dao;
 
-import com.petproject.medicine.model.Medicine;
+import com.petproject.medicine.dependecies.dao.output.Medicine;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDate;

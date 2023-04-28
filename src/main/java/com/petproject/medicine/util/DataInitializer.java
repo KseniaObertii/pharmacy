@@ -1,7 +1,8 @@
 package com.petproject.medicine.util;
 
-import com.petproject.medicine.model.Medicine;
+import com.petproject.medicine.dependecies.dao.output.Medicine;
 import com.petproject.medicine.service.MedicineService;
+import com.petproject.medicine.service.mapper.MedicineServiceModelMapper;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +30,7 @@ public class DataInitializer {
         birthControlPills.setManufacturedDate(LocalDate.parse("2020-12-03"));
         birthControlPills.setExpiringDate(LocalDate.parse("2024-12-03"));
         birthControlPills.setName("Birth Control Pills");
-        medicineService.save(eyeDrops);
-        medicineService.save(birthControlPills);
+        medicineService.save(MedicineServiceModelMapper.mapToDto(eyeDrops));
+        medicineService.save(MedicineServiceModelMapper.mapToDto(birthControlPills));
     }
 }

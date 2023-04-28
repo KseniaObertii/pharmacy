@@ -1,11 +1,10 @@
 package com.petproject.medicine.service.impl;
 
-import com.petproject.medicine.dao.MedicineDao;
-import com.petproject.medicine.model.Medicine;
+import com.petproject.medicine.dependecies.dao.MedicineDao;
 import com.petproject.medicine.service.MedicineService;
+import com.petproject.medicine.service.mapper.MedicineServiceModelMapper;
+import com.petproject.medicine.service.output.MedicineServiceModel;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MedicineServiceImpl implements MedicineService {
@@ -16,21 +15,22 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public Medicine save(Medicine medicine) {
-        return medicineDao.save(medicine);
+    public MedicineServiceModel save(MedicineServiceModel medicine) {
+        return MedicineServiceModelMapper.mapToDto(
+                medicineDao.save(MedicineServiceModelMapper.mapToModel(medicine)));
     }
 
-    @Override
-    public List<Medicine> getAllInLast14Days() {
-        return medicineDao.findAllByCreatedAt();
-    }
-
-    @Override
-    public void deleteAllTwoWeeksOlder() {
-        medicineDao.findAllByCreatedAtBefore()
-                .forEach(medicine -> {
-                    medicine.setDeleted(true);
-                    medicineDao.save(medicine);
-                });
-    }
+//    @Override
+//    public List<Medicine> getAllInLast14Days() {
+//        return medicineDao.findAllByCreatedAt();
+//    }
+//
+//    @Override
+//    public void deleteAllTwoWeeksOlder() {
+//        medicineDao.findAllByCreatedAtBefore()
+//                .forEach(medicine -> {
+//                    medicine.setDeleted(true);
+//                    medicineDao.save(medicine);
+//                });
+//    }
 }

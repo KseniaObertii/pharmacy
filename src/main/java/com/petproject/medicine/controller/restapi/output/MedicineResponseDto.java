@@ -1,4 +1,4 @@
-package com.petproject.medicine.dto;
+package com.petproject.medicine.controller.restapi.output;
 
 import lombok.Getter;
 import lombok.Setter;

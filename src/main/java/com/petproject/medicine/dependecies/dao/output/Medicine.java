@@ -1,18 +1,17 @@
-package com.petproject.medicine.model;
+package com.petproject.medicine.dependecies.dao.output;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

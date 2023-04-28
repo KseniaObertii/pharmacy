@@ -1,15 +1,13 @@
-package com.petproject.medicine.service.mapper;
+package com.petproject.medicine.controller.restapi.mapper;
 
-import com.petproject.medicine.dto.MedicineRequestDto;
-import com.petproject.medicine.dto.MedicineResponseDto;
-import com.petproject.medicine.model.Medicine;
+import com.petproject.medicine.controller.restapi.input.MedicineRequestDto;
+import com.petproject.medicine.controller.restapi.output.MedicineResponseDto;
+import com.petproject.medicine.dependecies.dao.output.Medicine;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MedicineMapper implements ResponseDtoMapper<MedicineResponseDto, Medicine>,
-        RequestDtoMapper<MedicineRequestDto, Medicine> {
-    @Override
-    public MedicineResponseDto mapToDto(Medicine medicine) {
+public class MedicineMapper {
+    public static MedicineResponseDto mapToDto(Medicine medicine) {
         MedicineResponseDto medicineResponseDto = new MedicineResponseDto();
         medicineResponseDto.setId(medicine.getId());
         medicineResponseDto.setCreatedAt(medicine.getCreatedAt());
@@ -21,9 +19,7 @@ public class MedicineMapper implements ResponseDtoMapper<MedicineResponseDto, Me
         medicineResponseDto.setDeleted(medicine.isDeleted());
         return medicineResponseDto;
     }
-
-    @Override
-    public Medicine mapToModel(MedicineRequestDto dto) {
+    public static Medicine mapToModel(MedicineRequestDto dto) {
         Medicine medicine = new Medicine();
         medicine.setName(dto.getName());
         medicine.setManufacturer(dto.getManufacturer());

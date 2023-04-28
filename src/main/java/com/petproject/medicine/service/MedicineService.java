@@ -1,13 +1,11 @@
 package com.petproject.medicine.service;
 
-import com.petproject.medicine.model.Medicine;
-
-import java.util.List;
+import com.petproject.medicine.service.output.MedicineServiceModel;
 
 public interface MedicineService {
-    Medicine save(Medicine medicine);
+    MedicineServiceModel save(MedicineServiceModel medicine);
 
-    List<Medicine> getAllInLast14Days();
+//    List<Medicine> getAllInLast14Days();
 
-    void deleteAllTwoWeeksOlder();
+//    void deleteAllTwoWeeksOlder();
 }
