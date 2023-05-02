@@ -1,8 +1,7 @@
 package com.petproject.medicine.util;
 
-import com.petproject.medicine.dependecies.dao.output.Medicine;
 import com.petproject.medicine.service.MedicineService;
-import com.petproject.medicine.service.mapper.MedicineServiceModelMapper;
+import com.petproject.medicine.service.output.MedicineServiceModel;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
@@ -18,19 +17,21 @@ public class DataInitializer {
 
     @PostConstruct
     public void inject() {
-        Medicine eyeDrops = new Medicine();
-        eyeDrops.setCreatedAt(LocalDate.now());
-        eyeDrops.setManufacturer("Alcon");
-        eyeDrops.setManufacturedDate(LocalDate.parse("2020-12-03"));
-        eyeDrops.setExpiringDate(LocalDate.parse("2024-12-03"));
-        eyeDrops.setName("Eye drops");
-        Medicine birthControlPills = new Medicine();
-        birthControlPills.setCreatedAt(LocalDate.now().minusDays(16));
-        birthControlPills.setManufacturer("Alizena");
-        birthControlPills.setManufacturedDate(LocalDate.parse("2020-12-03"));
-        birthControlPills.setExpiringDate(LocalDate.parse("2024-12-03"));
-        birthControlPills.setName("Birth Control Pills");
-        medicineService.save(MedicineServiceModelMapper.mapToDto(eyeDrops));
-        medicineService.save(MedicineServiceModelMapper.mapToDto(birthControlPills));
+        MedicineServiceModel eyeDrops = MedicineServiceModel.builder()
+                .id(1L)
+                .createdAt(LocalDate.now())
+                .manufacturer("Alcon")
+                .manufacturedDate(LocalDate.parse("2020-12-03"))
+                .expiringDate(LocalDate.parse("2024-12-03"))
+                .name("Eye drops").build();
+        MedicineServiceModel birthControlPills = MedicineServiceModel.builder()
+                .id(2L)
+                .createdAt(LocalDate.now().minusDays(16))
+                .manufacturer("Alizena")
+                .manufacturedDate(LocalDate.parse("2020-12-03"))
+                .expiringDate(LocalDate.parse("2024-12-03"))
+                .name("Birth Control Pills").build();
+        medicineService.save(eyeDrops);
+        medicineService.save(birthControlPills);
     }
 }

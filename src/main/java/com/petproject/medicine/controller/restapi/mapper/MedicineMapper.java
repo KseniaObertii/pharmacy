@@ -3,24 +3,25 @@ package com.petproject.medicine.controller.restapi.mapper;
 import com.petproject.medicine.controller.restapi.input.MedicineRequestDto;
 import com.petproject.medicine.controller.restapi.output.MedicineResponseDto;
 import com.petproject.medicine.dependecies.dao.output.Medicine;
+import com.petproject.medicine.service.output.MedicineServiceModel;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MedicineMapper {
-    public static MedicineResponseDto mapToDto(Medicine medicine) {
+    public static MedicineResponseDto mapToDto(MedicineServiceModel medicineServiceModel) {
         MedicineResponseDto medicineResponseDto = new MedicineResponseDto();
-        medicineResponseDto.setId(medicine.getId());
-        medicineResponseDto.setCreatedAt(medicine.getCreatedAt());
-        medicineResponseDto.setManufacturer(medicine.getManufacturer());
-        medicineResponseDto.setName(medicine.getName());
-        medicineResponseDto.setManufacturedDate(medicine.getManufacturedDate());
-        medicineResponseDto.setExpiringDate(medicine.getExpiringDate());
-        medicineResponseDto.setVerified(medicine.isVerified());
-        medicineResponseDto.setDeleted(medicine.isDeleted());
+        medicineResponseDto.setId(medicineServiceModel.getId());
+        medicineResponseDto.setCreatedAt(medicineServiceModel.getCreatedAt());
+        medicineResponseDto.setManufacturer(medicineServiceModel.getManufacturer());
+        medicineResponseDto.setName(medicineServiceModel.getName());
+        medicineResponseDto.setManufacturedDate(medicineServiceModel.getManufacturedDate());
+        medicineResponseDto.setExpiringDate(medicineServiceModel.getExpiringDate());
+        medicineResponseDto.setVerified(medicineServiceModel.isVerified());
+        medicineResponseDto.setDeleted(medicineServiceModel.isDeleted());
         return medicineResponseDto;
     }
-    public static Medicine mapToModel(MedicineRequestDto dto) {
-        Medicine medicine = new Medicine();
+    public static MedicineServiceModel mapToModel(MedicineRequestDto dto) {
+        MedicineServiceModel medicine = new MedicineServiceModel();
         medicine.setName(dto.getName());
         medicine.setManufacturer(dto.getManufacturer());
         medicine.setManufacturedDate(dto.getManufacturedDate());

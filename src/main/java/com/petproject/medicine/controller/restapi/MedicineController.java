@@ -19,24 +19,9 @@ public class MedicineController {
         this.medicineMapper = medicineMapper;
     }
 
-//    @GetMapping
-//    public List<MedicineResponseDto> getAllInLast14Days() {
-//        return medicineService.getAllInLast14Days()
-//                .stream()
-//                .map(medicineMapper::mapToDto)
-//                .collect(Collectors.toList());
-//    }
-
     @PostMapping()
     public MedicineResponseDto create(@RequestBody @Valid MedicineRequestDto medicineRequestDto) {
         return MedicineMapper.mapToDto(
-                MedicineServiceModelMapper.mapToModel(
-                        medicineService.save(MedicineServiceModelMapper.mapToDto(
-                                MedicineMapper.mapToModel(medicineRequestDto)))));
+                        medicineService.save(MedicineMapper.mapToModel(medicineRequestDto)));
     }
-
-//    @PostMapping("/clean")
-//    public void deleteAllTwoWeeksOlder() {
-//        medicineService.deleteAllTwoWeeksOlder();
-//    }
 }
